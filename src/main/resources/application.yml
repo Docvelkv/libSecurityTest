@@ -1,0 +1,25 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: libSecurityTest
+    library:
+      maxAllowedBooks: 1
+      noReaderById: "Could not find reader with id %d"
+      noReaderByLogin: "Could not find reader with login %s"
+      noBook: "Could not find book with id %d"
+      noIssue: "Could not find issue with id %d"
+      numberOfBooksExceeded: "The reader with id %d has more than %d book. The issuance of new book is prohibited."
+      bookHasBeenReturned: "Book with id %d - returned"
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:mysql://localhost:3306/library?createDatabaseIfNotExist=true&useSSL=false
+    username: root
+    password: 31031973
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop

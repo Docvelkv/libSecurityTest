@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Выдать книгу</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-md">
+    <h3 class="d-flex justify-content-between align-items-center mb-3">Выдача книги</h3>
+    <div>
+        <form th:action="@{saveIssue}" th:object="${issue}" method="post">
+            <ul th:if="${#fields.hasErrors('*')}">
+                <li th:each="error : ${#fields.errors('*')}" th:text="${error}">Ошибки</li>
+            </ul>
+            <p>
+                <label for="idReader" class="form-label">Id читателя</label>
+                <input class="form-control" id="idReader" placeholder="Введите Id читателя"
+                       th:name="idReader" type="number" th:field="*{reader}"/>
+
+                <label for="idBook" class="form-label">Id книги</label>
+                <input class="form-control" id="idBook" placeholder="Введите Id книги"
+                       th:name="idBook" type="number" th:field="*{book}"/>
+                <input type="hidden" th:field="*{id}">
+            </p>
+            <p>
+                <button class="badge text-bg-info rounded-pill" type="submit">Выдать</button>
+                <button class="badge text-bg-info rounded-pill" type="reset">Очистить</button>
+            </p>
+            <p>
+                <button class="badge text-bg-info rounded-pill" type="button"
+                        onclick="location.href='allIssues'">Журнал</button>
+            </p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Все записи журнала</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container-md">
+    <p>
+        <button class="badge text-bg-info rounded-pill" type="button"
+                onclick="location.href='addIssue'">Новая запись</button>
+        <button class="badge text-bg-info rounded-pill" type="button"
+                onclick="location.href='library'">На главную</button>
+    </p>
+    <h3 class="d-flex justify-content-between align-items-center mb-3">Журнал</h3>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Читатель</th>
+            <th>Книга</th>
+            <th>Дата выдачи</th>
+            <th>Дата возврата</th>
+            <td>Возврат книги</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${issues.empty}">
+            <td colspan="6">В журнале нет записей</td>
+        </tr>
+        <tr th:each="issue : ${issues}">
+            <td><span th:text="${issue.getId}">Id</span></td>
+            <td><span th:text="${issue.getReader}">Читатель</span></td>
+            <td><span th:text="${issue.getBook}">Книга</span></td>
+            <td><span th:text="${issue.getDateOfIssuance}">Дата выдачи</span></td>
+            <td><span th:text="${issue.getDateOfReturn}">Дата возврата</span></td>
+            <td><a th:href="@{returnIssue(issueId = ${issue.getId})}"
+                   class="badge text-bg-success rounded-pill">Закрыть</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
